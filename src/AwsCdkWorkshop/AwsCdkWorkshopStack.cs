@@ -1,5 +1,6 @@
 using Amazon.CDK;
 using Amazon.CDK.AWS.Lambda;
+using Amazon.CDK.AWS.APIGateway;
 
 namespace AwsCdkWorkshop
 {
@@ -12,6 +13,11 @@ namespace AwsCdkWorkshop
                 Runtime = Runtime.NODEJS_14_X,
                 Code = Code.FromAsset("lambda"),
                 Handler = "hello.handler"
+            });
+
+            new LambdaRestApi(this, "Endpoint", new LambdaRestApiProps
+            {
+                Handler = hello
             });
         }
     }
